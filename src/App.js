@@ -1,24 +1,31 @@
+import React from "react";
+import { BrowserRouter as BrowserRouter, Routes, Route } from "react-router-dom"; // Importa BrowserRouter, Routes e Route da React Router
 import "./App.css";
-// AGGIUNGIAMO L'IMPORT DEL CSS DI BOOTSTRAP
 import "bootstrap/dist/css/bootstrap.min.css";
-// Import per il css
 import "./components/style.css";
-
-//1)importo Navbar
-import Navbar from "./components/Navbar";
-//2)importo Footer
+import MyNavbar from "./components/MyNavbar";
 import Footer from "./components/Footer";
-//3)importo MovieGallery
 import MovieGallery from "./components/MovieGallery";
+import TVShows from "./components/TVShow"; // Importa il componente TVShows
+
+//abbiamo inserito:
+// ☑️BrowserRouter - Routes - Route
 
 function App() {
   return (
-    <div>
-      <Navbar />
-      <MovieGallery />
+    <BrowserRouter>
+      <div>
+        <MyNavbar />
+        {/* Definizione delle rotte */}
 
-      <Footer />
-    </div>
+        <Routes>
+          {/* Rotta per la pagina TVShows */}
+          <Route path="/tv-shows" element={<TVShows />} />
+        </Routes>
+        {/* <MovieGallery /> */}
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 

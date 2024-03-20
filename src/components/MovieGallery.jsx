@@ -101,14 +101,15 @@ class App extends Component {
 
 export default App;
 
-// ----
+// // ----
 
-// 1)STATE:Inizializzo lo stato del componente MovieGallery con un array vuoto di film. Questo array verrà utilizzato per memorizzare i film ottenuti dall'API
-// 2)componentDidMount: dove chiamiamo la funzione fetchMovies la quale effettua una chiama api per richiedere i dati richiesti.
-// 3)FETCH -Recupero dei dati dalla risposta API: Si gestisce la risposta dell'API, convertendo i dati in formato JSON e limitando i risultati ai primi sei film.
-// 4)RENDER: Si visualizzano dinamicamente i film recuperati dall'API all'interno delle card Bootstrap, mostrando il titolo e l'immagine di ciascun film.
-// 5)Componente App: Si definisce una classe che contiene tre istanze della componente MovieGallery, ciascuna rappresentante una diversa saga cinematografica.
+// // 1)STATE:Inizializzo lo stato del componente MovieGallery con un array vuoto di film. Questo array verrà utilizzato per memorizzare i film ottenuti dall'API
+// // 2)componentDidMount: dove chiamiamo la funzione fetchMovies la quale effettua una chiama api per richiedere i dati richiesti.
+// // 3)FETCH -Recupero dei dati dalla risposta API: Si gestisce la risposta dell'API, convertendo i dati in formato JSON e limitando i risultati ai primi sei film.
+// // 4)RENDER: Si visualizzano dinamicamente i film recuperati dall'API all'interno delle card Bootstrap, mostrando il titolo e l'immagine di ciascun film.
+// // 5)Componente App: Si definisce una classe che contiene tre istanze della componente MovieGallery, ciascuna rappresentante una diversa saga cinematografica.
 
-// INOLTRE:
-// Passaggio delle props: Si passa il nome della saga cinematografica come prop quando si istanziano le componenti MovieGallery nel componente App.
-// Utilizzo della prop saga: Ogni istanza del componente MovieGallery utilizza il nome della saga come chiave per effettuare la chiamata all'API OMDB e recuperare i dati dei film corrispondenti.
+// // INOLTRE:
+// // Passaggio delle props: Si passa il nome della saga cinematografica come prop quando si istanziano le componenti MovieGallery nel componente App.
+// // Utilizzo della prop saga: Ogni istanza del componente MovieGallery utilizza il nome della saga come chiave per effettuare la chiamata all'API OMDB e recuperare i dati dei film corrispondenti.
+//-------------------------------------
