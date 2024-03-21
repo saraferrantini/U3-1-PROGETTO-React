@@ -112,68 +112,18 @@
 // // // INOLTRE:
 // // // Passaggio delle props: Si passa il nome della saga cinematografica come prop quando si istanziano le componenti MovieGallery nel componente App.
 // // // Utilizzo della prop saga: Ogni istanza del componente MovieGallery utilizza il nome della saga come chiave per effettuare la chiamata all'API OMDB e recuperare i dati dei film corrispondenti.
-// //-------------------------------------
-// import React, { Component } from "react";
-// import { Link } from "react-router-dom"; // Importa Link da React Router
 
-// class MovieGallery extends Component {
-//   state = {
-//     movies: [],
-//   };
-
-//   componentDidMount() {
-//     this.fetchMovies();
-//   }
-
-//   fetchMovies = () => {
-//     fetch(`http://www.omdbapi.com/?s=${this.props.saga}&apikey=7d5dfa37`)
-//       .then((response) => {
-//         if (response.ok) {
-//           return response.json();
-//         } else {
-//           throw new Error("Errore nella chiamata API");
-//         }
-//       })
-//       .then((data) => {
-//         const limitedMovies = data.Search ? data.Search.slice(0, 6) : [];
-//         this.setState({ movies: limitedMovies });
-//       })
-//       .catch((error) => {
-//         console.log("Errore:", error);
-//       });
-//   };
-
-//   render() {
-//     return (
-//       <div className="row mb-4">
-//         <div className="col">
-//           <h2>{this.props.saga}</h2>
-//           <div className="row">
-//             {this.state.movies.map((movie) => (
-//               <div key={movie.imdbID} className="col-md-2 mb-3">
-//                 <Link to={`/movie/${movie.imdbID}`} className="card-link">
-//                   <div className="card h-100">
-//                     <img src={movie.Poster} className="card-img-top img-fluid" alt={movie.Title} />
-//                     <div className="card-body">
-//                       <p className="card-text">{movie.Title}</p>
-//                     </div>
-//                   </div>
-//                 </Link>
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-//       </div>
-//     );
-//   }
-// }
-
-// export default MovieGallery;
 //---
+
+// ☑️MODIFICHE PER INSERIRE REACT ROUTER
+
 import React, { Component } from "react";
 import { Container, Row, Col, Card, Spinner, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+//☑️Inizializzazione dello stato:
+//Inizializzazione dello stato del componente con tre array vuoti Saga1, Saga2, e Saga3, che verranno utilizzati per memorizzare i dati dei film provenienti da tre saghe diverse.
+//loading è un booleano che indica se il caricamento dei dati è in corso, mentre error è utilizzato per memorizzare eventuali errori durante il recupero dei dati.
 class MovieGallery extends Component {
   state = {
     Saga1: [],
@@ -183,6 +133,8 @@ class MovieGallery extends Component {
     error: null,
   };
 
+  // ☑️ComponentDidMount: per eseguire il recupero dei dati dei film da tre saghe diverse utilizzando l'API OMDB.
+  //Una volta recuperati i dati con successo, aggiorna lo stato del componente con i primi 6 film di ciascuna saga e imposta loading su false. Se si verifica un errore durante il recupero dei dati, lo stato error viene aggiornato con il messaggio di errore e loading viene impostato su false.
   componentDidMount = async () => {
     try {
       const response1 = await fetch("http://www.omdbapi.com/?i=tt3896198&apikey=76caa3a1&s=harry%20potter");
@@ -208,6 +160,8 @@ class MovieGallery extends Component {
     }
   };
 
+  //☑️RENDER: viene verificato lo stato di loading e error. Se loading è true, viene visualizzato uno spinner di caricamento.
+  //Se error è stato impostato, viene visualizzato un messaggio di errore. Altrimenti, viene restituito il layout della galleria dei film.
   render() {
     const { Saga1, Saga2, Saga3, loading, error } = this.state;
 
@@ -231,6 +185,8 @@ class MovieGallery extends Component {
       );
     }
 
+    //☑️Per ciascuna saga, viene mappato l'array di film corrispondente e viene generato un Card per ogni film.
+    // Ogni Card contiene un'immagine del poster del film e un link che reindirizza alla pagina di dettaglio del film.
     return (
       <Container fluid className="bg-dark">
         <div className="mt-3">
@@ -267,6 +223,7 @@ class MovieGallery extends Component {
             {Saga3.map((e) => (
               <Col className="col-md-4 col-xs-6 col-lg-2 mt-2" key={e.imdbID}>
                 <Card style={{ width: "14rem" }}>
+                  {/* il link utilizza l'URL /movie-details/ seguito dall'ID del film (e.imdbID), che probabilmente reindirizzerà l'utente a una pagina con i dettagli del film. */}
                   <Link to={"/movie-details/" + e.imdbID}>
                     <Card.Img variant="top" src={e.Poster} style={{ height: "20rem" }} />{" "}
                   </Link>
