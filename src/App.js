@@ -22,6 +22,7 @@ function App() {
           <Route path="/movie/:movieId" element={<MovieDetail />} /> */}
           <Route path="/tv-shows" element={<TVShows />} />
           <Route path="/" element={<MovieGallery />} />
+          {/* Il parametro :id rappresenta l'ID univoco del film, che verrà passato al componente MovieDetail */}
           <Route path="/movie/:movieId" element={<MovieDetail />} />
         </Routes>
         <MovieGallery />
